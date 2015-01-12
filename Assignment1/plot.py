@@ -31,7 +31,7 @@ def cpu_time(location):
 
 
 def plot_cpu():
-    fi = open("readings","r+")
+    fi = open("readings.log","r+")
     fo = open("TimeDiff.dat","r+")
     fi.write("Timestamp \t CPU-Usage\n")
     start = True
@@ -70,6 +70,8 @@ def plot_cpu():
             diff = (3600*hr + 60*mi + sec)*1000
             diff = str(diff)
             diff = diff.rstrip('0').rstrip('.') if '.' in diff else diff
+            diff = int(diff)
+            diff -= 1000
             fo.write(str(diff) + '\n')  
           idle = int(time[5]) + int(time[6])
           use = int(time[2]) + int(time[3]) + int(time[4]) + int(time[7]) + int(time[8]) + int(time[9])
